@@ -1,0 +1,20 @@
+include ../../blocks/input-checkbox/input-checkbox
+
+!!!
+html
+  head
+    meta(charset="utf-8")
+    title #{title}
+    link(rel="stylesheet", href="css/style.css")
+  body
+    .b-header
+      .b-logo.b-logo_type_header
+        .b-logo.b-logo__slogan #{slogan}
+
+    .b-content
+      .b-catalog
+        for item in catalog
+          .b-catalog-item
+            .b-catalog-item__title #{item.title}
+            .b-catalog-item__price #{item.price}
+            +input-checkbox("Add to cart", "cart", 1)

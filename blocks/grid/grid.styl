@@ -1,0 +1,53 @@
+$grid ?= {
+  gutter:  20px,
+  columns: 12
+  padding: 0
+}
+
+.grid {
+  &:after {
+    content: " "
+    display: table
+    clear: both
+    height: 0
+  }
+}
+
+.grid__unit {
+  border-color: none
+  float: left
+
+  border-left-width: $grid['gutter']
+  padding-left: ($grid['padding'] / 2)
+  padding-right: ($grid['padding'] / 2)
+
+  &:first-child {
+    border-left-width: 0
+  }
+
+  &_type_split {
+    border-left-width: 0
+    padding-right: 0
+    padding-left: 0
+  }
+
+  &_align_left {
+    float: left
+  }
+
+  &_align_right {
+    float: right
+  }
+}
+
+for $column in 1..$grid['columns'] {
+  
+  .grid__unit_col_{$column} {
+    width: unit(($column / $grid['columns']) * 100, '%')
+  }
+
+  .grid__unit_prefix_{$column} {
+    margin-left: unit(($column / $grid['columns']) * 100, '%')
+  }
+
+}

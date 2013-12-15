@@ -1,0 +1,9 @@
+mixin input-checkbox(label, name, value, checked)
+  if checked
+    label.input-checkbox.input-checkbox_state_checked
+      input.input-checkbox__input(type="checkbox", name=name, value=value, checked=checked)
+      span.input-checkbox__label= label
+  else
+    label.input-checkbox
+      input.input-checkbox__input(type="checkbox", name=name, value=value, checked=checked)
+      span.input-checkbox__label= label
