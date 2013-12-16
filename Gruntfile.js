@@ -14,7 +14,7 @@ module.exports = function(grunt) {
           }
         }],
         options: {
-          pretty: true,
+          pretty: false,
           data: function(dest, src) {
             var file = src[0].replace('.jade', '.json');
             return grunt.file.exists(file)? grunt.file.readJSON(file) : {};
@@ -26,8 +26,8 @@ module.exports = function(grunt) {
       compile: {
         files: [{
           'build/css/style.css': [
-            'blocks/blocks.styl',
-            'blocks/reset.styl'
+            'common/reset.styl',
+            'blocks/blocks.styl'
           ]
         }]
       }
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         tasks: 'jade'
       },
       stylus: {
-        files: ['blocks/**/*.styl'],
+        files: ['common/*.styl', 'blocks/**/*.styl'],
         tasks: 'stylus'
       }
     }

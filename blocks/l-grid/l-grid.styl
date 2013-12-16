@@ -1,10 +1,10 @@
 $grid ?= {
-  gutter:  20px,
+  gutter:  20px
   columns: 12
   padding: 0
 }
 
-.grid {
+.l-grid {
   &:after {
     content: " "
     display: table
@@ -13,8 +13,9 @@ $grid ?= {
   }
 }
 
-.grid__unit {
-  border-color: none
+.l-grid__unit {
+  border-color: transparent
+  box-sizing: border-box
   float: left
 
   border-left-width: $grid['gutter']
@@ -25,7 +26,7 @@ $grid ?= {
     border-left-width: 0
   }
 
-  &_type_split {
+  &_layout_split {
     border-left-width: 0
     padding-right: 0
     padding-left: 0
@@ -38,15 +39,21 @@ $grid ?= {
   &_align_right {
     float: right
   }
+
+  &_align_center {
+    float: none
+    margin-left: auto
+    margin-right: auto
+  }
 }
 
 for $column in 1..$grid['columns'] {
   
-  .grid__unit_col_{$column} {
+  .l-grid__unit_col_{$column} {
     width: unit(($column / $grid['columns']) * 100, '%')
   }
 
-  .grid__unit_prefix_{$column} {
+  .l-grid__unit_prefix_{$column} {
     margin-left: unit(($column / $grid['columns']) * 100, '%')
   }
 

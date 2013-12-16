@@ -1,12 +1,3 @@
 {
-  "title": "Hello from LEGO ;-)",
-  "slogan": "All it's good!",
-
-  "catalog": [{
-    "title": "First product",
-    "price": "$300"
-  },{
-    "title": "Second product",
-    "price": "$400"
-  }]
+  
 }
