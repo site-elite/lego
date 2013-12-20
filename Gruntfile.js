@@ -24,12 +24,22 @@ module.exports = function(grunt) {
     },
     stylus: {
       compile: {
-        files: [{
-          'build/css/style.css': [
-            'common/reset.styl',
-            'blocks/blocks.styl'
-          ]
-        }]
+        files: {
+          'build/css/style.css': ['common/reset.styl', 'blocks/**/*.styl']
+        }
+      }
+    },
+    uglify: {
+      blocks: {
+        options: {
+          compress: false,
+          mangle: false,
+          banner: '/*! Build date: <%= grunt.template.today("yyyy-mm-dd") %> */'
+        },
+        files: {
+          'build/js/libs.js': ['vendor/**/*.js'],
+          'build/js/blocks.js': ['blocks/**/*.js']
+        }
       }
     },
     copy: {
@@ -54,6 +64,10 @@ module.exports = function(grunt) {
       stylus: {
         files: ['common/*.styl', 'blocks/**/*.styl'],
         tasks: 'stylus'
+      },
+      uglify: {
+        files: ['blocks/**/*.js'],
+        tasks: 'uglify'
       }
     }
   });
@@ -61,7 +75,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jade', 'stylus', 'copy']);
+  grunt.registerTask('default', ['jade', 'stylus', 'copy', 'uglify']);
 };
